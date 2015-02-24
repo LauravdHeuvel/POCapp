@@ -1,9 +1,9 @@
 package com.example.heuvell.daoclasses;
 
 /**
- * Created by HeuvelL on 12-2-2015.
+ * Created by HeuvelL on 18-2-2015.
  */
-import com.example.heuvell.domainclasses.Nurse;
+import com.example.heuvell.domainclasses.Food;
 import com.example.heuvell.exceptions.SQLIntegrityConstraintViolationException;
 
 import java.io.Serializable;
@@ -11,12 +11,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class NurseDAO implements Serializable {
+public class FoodDAO implements Serializable {
     private Connection conn = null;
     private PreparedStatement ptmt = null;
     private ResultSet resultset = null;
 
-    public NurseDAO() {
+    public FoodDAO() {
     }
     private Connection getConnection() throws SQLException {
         Connection conn = null;
@@ -24,19 +24,18 @@ public class NurseDAO implements Serializable {
         return conn;
     }
 
-    public void add(Nurse nurse) {
+    public void add(Food food) {
 
         try {
-            String query = "insert into nurse values (?,?,?,?)";
+            String query = "insert into food values (?,?,?)";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
-            ptmt.setString(2, nurse.getName());
-            ptmt.setString(3, nurse.getPassword());
-            ptmt.setInt(4, nurse.getDepartmentNumber());
+            ptmt.setInt(1, food.getFoodNumber());
+            ptmt.setInt(2, food.getEggsNumber());
+            ptmt.setString(3, food.getFoodName());
             ptmt.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Duplicate key" + nurse.getNurseNumber());
+            System.out.println("Duplicate key" + food.getFoodNumber());
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,27 +52,27 @@ public class NurseDAO implements Serializable {
             }
         }
     }
-    public Nurse findNurse(int nurseNumber) {
-        Nurse nurse = null;
+    public Food findFood(int foodNumber) {
+        Food food = null;
         int rowcount = 0;
         try {
-            String query = "select * from nurse where nurseNumber=?";
+            String query = "select * from food where foodNumber=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurseNumber);
+            ptmt.setInt(1, foodNumber);
             resultset = ptmt.executeQuery();
             if (resultset.last()) {
                 rowcount = resultset.getRow();
             }
             if (rowcount == 0) {
-                return nurse;
+                return food;
             } else {
                 resultset.first();
-                nurse = new Nurse();
-                nurse.setNurseNumber(resultset.getInt(1));
-                nurse.setName(resultset.getString(2));
-                nurse.setPassword(resultset.getString(3));
-                nurse.setDepartmentNumber(resultset.getInt(4));
+                food = new Food();
+                food.setFoodNumber(resultset.getInt(1));
+                food.setEggsNumber(resultset.getInt(2));
+                food.setFoodName(resultset.getString(3));
+
             }
         }
         catch (SQLException e) {
@@ -90,18 +89,17 @@ public class NurseDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return nurse;
+        return food;
     }
 
-    public void updateNurse(Nurse nurse) {
-        String query = "update nurse set name=?, password=?, departmentNumber=? where nurseNumber =?";
+    public void updateFood(Food food) {
+        String query = "update food set eggsNumber=?, foodName=? where foodNumber =?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
-            ptmt.setString(2, nurse.getName());
-            ptmt.setString(3, nurse.getPassword());
-            ptmt.setInt(4, nurse.getDepartmentNumber());
+            ptmt.setInt(1, food.getFoodNumber());
+            ptmt.setInt(2, food.getEggsNumber());
+            ptmt.setString(3, food.getFoodName());
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,12 +117,12 @@ public class NurseDAO implements Serializable {
         }
     }
 
-    public void delete(Nurse nurse){
-        String query = "delete from nurse where nurseNumber=?";
+    public void delete(Food food){
+        String query = "delete from food where foodNumber=?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
+            ptmt.setInt(1, food.getFoodNumber());
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,4 +141,3 @@ public class NurseDAO implements Serializable {
 
     }
 }
-

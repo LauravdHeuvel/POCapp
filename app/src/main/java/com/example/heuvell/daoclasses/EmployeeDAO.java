@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployeeDAO implements Serializable {
     private Connection conn = null;
     private PreparedStatement ptmt = null;
@@ -144,5 +147,39 @@ public class EmployeeDAO implements Serializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List findAll(){
+        List employees = new ArrayList();
+        Employee employee=  null;
+        try{
+            final String query = "select * from employee";
+            conn = getConnection();
+            ptmt = conn.prepareStatement(query);
+            resultset = ptmt.executeQuery();
+            while(resultset.next()){
+                employee = new Employee();
+                employee.setEmployeeNumber(resultset.getInt(1));
+                employee.setName(resultset.getString(2));
+                employee.setFunction(resultset.getString(3));
+
+                employees.add(employee);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                if (ptmt!= null){
+                    ptmt.close();
+                }
+                if (conn!= null){
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return employees;
     }
 }

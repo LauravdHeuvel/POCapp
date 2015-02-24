@@ -92,12 +92,15 @@ public class MainActivity extends Activity implements View.OnClickListener  {
 
 
         if (filledInPassword.equals(nursePassword)){
-            //doorsturen andere pagina
+
 
             //Doorsturen welke verpleegkundige is ingelogd
             Intent myIntent = new Intent(v.getContext(), LoggedInActivity.class);
             myIntent.putExtra("loggedInNurse", nurseNumber);
             startActivityForResult(myIntent, 0);
+            Intent nextIntent = new Intent(v.getContext(), NewEPDActivity.class);
+            myIntent.putExtra("nurse", nurseNumber);
+            startActivityForResult(nextIntent, 0);
 
 
             new LoggedInActivity();

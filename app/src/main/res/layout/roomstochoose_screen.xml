@@ -14,12 +14,12 @@
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log uit"
-                android:id="@+id/button3" />
+                android:id="@+id/toLogOutButton"
+                android:onClick="onClick"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,6 +32,30 @@
 
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"></TableRow>
+            android:layout_height="fill_parent">
+
+
+
+
+        </TableRow>
+    <TableRow>
+        <ScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" >
+            <TableLayout
+                android:id="@+id/my_table"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:stretchColumns="1"
+                android:shrinkColumns="1"/>
+        </ScrollView>
+
+        </TableRow>
+
+
+
+
+
+
     </TableLayout>
 </LinearLayout>

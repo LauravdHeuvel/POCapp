@@ -7,15 +7,17 @@ public class Nurse {
     private int nurseNumber;
     private String name;
     private String password;
+    private int departmentNumber;
 
     public Nurse(){
 
     }
 
-    public Nurse(int nurseNumber, String name, String password){
+    public Nurse(int nurseNumber, String name, String password, int departmentNumber){
         this.nurseNumber = nurseNumber;
         this.name = name;
         this.password = password;
+        this.departmentNumber = departmentNumber;
     }
 
     public int getNurseNumber() {
@@ -40,5 +42,13 @@ public class Nurse {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getDepartmentNumber() {
+        return departmentNumber;
+    }
+
+    public void setDepartmentNumber(int departmentNumber) {
+        this.departmentNumber = departmentNumber;
     }
 }

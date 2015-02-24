@@ -1,9 +1,9 @@
 package com.example.heuvell.daoclasses;
 
 /**
- * Created by HeuvelL on 12-2-2015.
+ * Created by HeuvelL on 18-2-2015.
  */
-import com.example.heuvell.domainclasses.Patient;
+import com.example.heuvell.domainclasses.Department;
 import com.example.heuvell.exceptions.SQLIntegrityConstraintViolationException;
 
 import java.io.Serializable;
@@ -14,12 +14,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientDAO implements Serializable {
+public class DepartmentDAO implements Serializable {
     private Connection conn = null;
     private PreparedStatement ptmt = null;
     private ResultSet resultset = null;
 
-    public PatientDAO() {
+    public DepartmentDAO() {
     }
     private Connection getConnection() throws SQLException {
         Connection conn = null;
@@ -27,23 +27,18 @@ public class PatientDAO implements Serializable {
         return conn;
     }
 
-    public void add(Patient patient) {
+    public void add(Department department) {
 
         try {
-            String query = "insert into patient values (?,?,?,?,?,?,?,?)";
+            String query = "insert into department values (?,?,?)";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, patient.getPatientNumber());
-            ptmt.setString(2, patient.getName());
-            ptmt.setString(3, patient.getAddress());
-            ptmt.setString(4, patient.getRecidence());
-            ptmt.setString(5, patient.getDiagnosis());
-            ptmt.setInt(6, patient.getReanimate());
-            ptmt.setInt(7, patient.getRoomNumber());
-            ptmt.setInt(8, patient.getDepartment());
+            ptmt.setInt(1, department.getDepartmentNumber());
+            ptmt.setString(2, department.getDepartmentName());
+            ptmt.setString(3, department.getLocation());
             ptmt.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Duplicate key" + patient.getPatientNumber());
+            System.out.println("Duplicate key" + department.getDepartmentNumber());
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,31 +55,27 @@ public class PatientDAO implements Serializable {
             }
         }
     }
-    public Patient findPatient(int patientNumber) {
-        Patient patient = null;
+    public Department findDepartment(int departmentNumber) {
+        Department department = null;
         int rowcount = 0;
         try {
-            String query = "select * from patient where patientNumber=?";
+            String query = "select * from department where departmentNumber=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, patientNumber);
+            ptmt.setInt(1, departmentNumber);
             resultset = ptmt.executeQuery();
             if (resultset.last()) {
                 rowcount = resultset.getRow();
             }
             if (rowcount == 0) {
-                return patient;
+                return department;
             } else {
                 resultset.first();
-                patient = new Patient();
-                patient.setPatientNumber(resultset.getInt(1));
-                patient.setName(resultset.getString(2));
-                patient.setAddress(resultset.getString(3));
-                patient.setRecidence(resultset.getString(4));
-                patient.setDiagnosis(resultset.getString(5));
-                patient.setReanimate(resultset.getInt(6));
-                patient.setRoomNumber(resultset.getInt(7));
-                patient.setDepartment(resultset.getInt(8));
+                department = new Department();
+                department.setDepartmentNumber(resultset.getInt(1));
+                department.setDepartmentName(resultset.getString(2));
+                department.setLocation(resultset.getString(3));
+
             }
         }
         catch (SQLException e) {
@@ -101,23 +92,18 @@ public class PatientDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return patient;
+        return department;
     }
 
-    public void updatePatient(Patient patient) {
-        String query = "update patient set  name=?,address=?, recidence=?, diagnosis=?," +
-                "reanimate=?,roomNumber=?,department=? where patientNumber =?";
+    public void updateDepartment(Department department) {
+        String query = "update department set departmentName=?, location=? where departmentNumber =?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, patient.getPatientNumber());
-            ptmt.setString(2, patient.getName());
-            ptmt.setString(3, patient.getAddress());
-            ptmt.setString(4, patient.getRecidence());
-            ptmt.setString(5, patient.getDiagnosis());
-            ptmt.setInt(6, patient.getReanimate());
-            ptmt.setInt(7, patient.getRoomNumber());
-            ptmt.setInt(8, patient.getDepartment());
+            ptmt.setInt(1, department.getDepartmentNumber());
+            ptmt.setString(2, department.getDepartmentName());
+            ptmt.setString(3, department.getLocation());
+
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,12 +121,12 @@ public class PatientDAO implements Serializable {
         }
     }
 
-    public void delete(Patient patient){
-        String query = "delete from patient where patientNumber=?";
+    public void delete(Department department){
+        String query = "delete from department where departmentNumber=?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, patient.getPatientNumber());
+            ptmt.setInt(1, department.getDepartmentNumber());
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,26 +146,21 @@ public class PatientDAO implements Serializable {
     }
 
     public List findAll(){
-        List patients = new ArrayList();
-        Patient patient=  null;
+        List departments = new ArrayList();
+        Department department=  null;
         try{
-            final String query = "select * from patient";
+            final String query = "select * from department";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
             resultset = ptmt.executeQuery();
             while(resultset.next()){
-                patient = new Patient();
-                patient.setPatientNumber(resultset.getInt(1));
-                patient.setDepartment(resultset.getInt(2));
-                patient.setName(resultset.getString(3));
-                patient.setAddress(resultset.getString(4));
-                patient.setRecidence(resultset.getString(5));
-                patient.setDiagnosis(resultset.getString(6));
-                patient.setReanimate(resultset.getInt(7));
-                patient.setRoomNumber(resultset.getInt(8));
+                department = new Department();
+                department = new Department();
+                department.setDepartmentNumber(resultset.getInt(1));
+                department.setDepartmentName(resultset.getString(2));
+                department.setLocation(resultset.getString(3));
 
-
-                patients.add(patient);
+                departments.add(department);
             }
 
         }catch (SQLException e) {
@@ -196,7 +177,7 @@ public class PatientDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return patients;
+        return departments;
     }
 }
 

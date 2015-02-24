@@ -1,9 +1,9 @@
 package com.example.heuvell.daoclasses;
 
 /**
- * Created by HeuvelL on 12-2-2015.
+ * Created by HeuvelL on 18-2-2015.
  */
-import com.example.heuvell.domainclasses.Nurse;
+import com.example.heuvell.domainclasses.Order;
 import com.example.heuvell.exceptions.SQLIntegrityConstraintViolationException;
 
 import java.io.Serializable;
@@ -11,12 +11,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class NurseDAO implements Serializable {
+public class OrderDAO implements Serializable {
     private Connection conn = null;
     private PreparedStatement ptmt = null;
     private ResultSet resultset = null;
 
-    public NurseDAO() {
+    public OrderDAO() {
     }
     private Connection getConnection() throws SQLException {
         Connection conn = null;
@@ -24,19 +24,20 @@ public class NurseDAO implements Serializable {
         return conn;
     }
 
-    public void add(Nurse nurse) {
+    public void add(Order order) {
 
         try {
-            String query = "insert into nurse values (?,?,?,?)";
+            String query = "insert into order values (?,?,?,?,?)";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
-            ptmt.setString(2, nurse.getName());
-            ptmt.setString(3, nurse.getPassword());
-            ptmt.setInt(4, nurse.getDepartmentNumber());
+            ptmt.setInt(1, order.getOrderNumber());
+            ptmt.setInt(2, order.getFoodNumber());
+            ptmt.setInt(3, order.getPatientNumber());
+            ptmt.setDate(4, (java.sql.Date) order.getDate());
+            ptmt.setInt(5, order.getEaten());
             ptmt.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Duplicate key" + nurse.getNurseNumber());
+            System.out.println("Duplicate key" + order.getOrderNumber());
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,27 +54,28 @@ public class NurseDAO implements Serializable {
             }
         }
     }
-    public Nurse findNurse(int nurseNumber) {
-        Nurse nurse = null;
+    public Order findOrder(int orderNumber) {
+        Order order = null;
         int rowcount = 0;
         try {
-            String query = "select * from nurse where nurseNumber=?";
+            String query = "select * from order where orderNumber=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurseNumber);
+            ptmt.setInt(1, orderNumber);
             resultset = ptmt.executeQuery();
             if (resultset.last()) {
                 rowcount = resultset.getRow();
             }
             if (rowcount == 0) {
-                return nurse;
+                return order;
             } else {
                 resultset.first();
-                nurse = new Nurse();
-                nurse.setNurseNumber(resultset.getInt(1));
-                nurse.setName(resultset.getString(2));
-                nurse.setPassword(resultset.getString(3));
-                nurse.setDepartmentNumber(resultset.getInt(4));
+                order = new Order();
+                order.setOrderNumber(resultset.getInt(1));
+                order.setFoodNumber(resultset.getInt(2));
+                order.setPatientNumber(3);
+                order.setDate(resultset.getDate(4));
+                order.setEaten(resultset.getInt(5));
             }
         }
         catch (SQLException e) {
@@ -90,18 +92,19 @@ public class NurseDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return nurse;
+        return order;
     }
 
-    public void updateNurse(Nurse nurse) {
-        String query = "update nurse set name=?, password=?, departmentNumber=? where nurseNumber =?";
+    public void updateOrder(Order order) {
+        String query = "update order set foodNumber=?, patientNumber=?, date=?, eaten=? where orderNumber =?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
-            ptmt.setString(2, nurse.getName());
-            ptmt.setString(3, nurse.getPassword());
-            ptmt.setInt(4, nurse.getDepartmentNumber());
+            ptmt.setInt(1, order.getOrderNumber());
+            ptmt.setInt(2, order.getFoodNumber());
+            ptmt.setInt(3, order.getPatientNumber());
+            ptmt.setDate(4, (java.sql.Date) order.getDate());
+            ptmt.setInt(5, order.getEaten());
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,12 +122,12 @@ public class NurseDAO implements Serializable {
         }
     }
 
-    public void delete(Nurse nurse){
-        String query = "delete from nurse where nurseNumber=?";
+    public void delete(Order order){
+        String query = "delete from order where orderNumber=?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, nurse.getNurseNumber());
+            ptmt.setInt(1, order.getOrderNumber());
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

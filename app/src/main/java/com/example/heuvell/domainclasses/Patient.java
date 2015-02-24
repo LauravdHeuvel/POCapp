@@ -9,16 +9,25 @@ public class Patient {
     private String name;
     private String address;
     private String recidence;
+    private String diagnosis;
+    private int reanimate;
+    private int roomNumber;
+    private int department;
 
     public Patient(){
 
     }
 
-    public Patient(int patientNumber, String name, String address, String recidence){
+    public Patient(int patientNumber, String name, String address, String recidence, String diagnosis,
+                    int reanimate, int roomNumber, int department){
         this.patientNumber = patientNumber;
         this.name = name;
         this.address = address;
         this.recidence = recidence;
+        this.diagnosis = diagnosis;
+        this.reanimate = reanimate;
+        this.roomNumber = roomNumber;
+        this.department = department;
     }
 
     public int getPatientNumber() {
@@ -51,5 +60,37 @@ public class Patient {
 
     public void setRecidence(String recidence) {
         this.recidence = recidence;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public int getReanimate() {
+        return reanimate;
+    }
+
+    public void setReanimate(int reanimate) {
+        this.reanimate = reanimate;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
     }
 }

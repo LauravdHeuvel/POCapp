@@ -16,14 +16,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Terug"
-                android:id="@+id/backCommandsButton" />
+                android:id="@+id/button3" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stel vraag"
-                android:id="@+id/newQuestionButton" />
-
+                android:text="Nieuw"
+                android:id="@+id/button4" />
         </TableRow>
 
         <TableRow
@@ -34,8 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Overzicht vragen"
-                android:id="@+id/textView11" />
+                android:text="Overzicht"
+                android:id="@+id/textView12" />
         </TableRow>
 
         <TableRow
@@ -45,21 +44,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Datum: "
-                android:id="@+id/textView2" />
+                android:text="Tijd:"
+                android:id="@+id/textView13" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vraag: "
-                android:id="@+id/textView10" />
+                android:text="Gemaakt door "
+                android:id="@+id/textView14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Antwoord: "
-                android:id="@+id/answer" />
+                android:text="Aantekeningen"
+                android:id="@+id/textView15" />
         </TableRow>
     </TableLayout>
-
 </LinearLayout>

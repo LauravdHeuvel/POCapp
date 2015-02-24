@@ -4,7 +4,7 @@
     android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".LoggedInActivity"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".RoomActivity"
     android:background="@color/green"
     >
 
@@ -22,70 +22,110 @@
             android:layout_height="match_parent">
 
             <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Terug"
-                    android:id="@+id/logoutButton" />
+                    android:id="@+id/backEPDSperRoomButton" />
+
+
+            </TableRow>
+            <TableRow>
+
+                <Space
+                    android:layout_width="20px"
+                    android:layout_height="50px" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Datum"
+                    android:text="Datum "
                     android:id="@+id/Date" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Patient naam"
-                    android:id="@+id/PatientName" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Arts"
+                    android:text="Arts "
                     android:id="@+id/Doctor" />
 
                 <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Diagnose"
+                android:text="Diagnose "
                 android:id="@+id/Diagnosis" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Eiwitten"
+                    android:text="Temperatuur "
+                    android:id="@+id/Temperature" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Bloeddruk "
+                    android:id="@+id/BloodP" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Eiwitten "
                     android:id="@+id/EggsContent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Infusen"
-                    android:id="@+id/Infusions" />
+                    android:text="Pijn "
+                    android:id="@+id/Pain" />
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Allergieën"
-                    android:id="@+id/Allergies" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Nieuwe toevoegen"
-                    android:id="@+id/AddEPD" />
+                    android:text="Deze persoon "
+                    android:id="@+id/thisPatient" />
 
             </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                    <ScrollView
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent" >
+                        <TableLayout
+                            android:id="@+id/my_table"
+                            android:layout_height="fill_parent"
+                            android:layout_width="fill_parent"
+                            android:stretchColumns="1"
+                            android:shrinkColumns="1"/>
+                    </ScrollView>
+
+
+                </TableRow>
+
+
+
         </TableLayout>
 
     </LinearLayout>

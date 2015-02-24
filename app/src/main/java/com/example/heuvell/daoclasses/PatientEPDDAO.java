@@ -31,7 +31,7 @@ public class PatientEPDDAO implements Serializable {
     public void add(PatientEPD patientEPD) {
 
         try {
-            String query = "insert into patientEPD values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into patientEPD values (?,?,?,?,?,?,?,?,?,?,?,?)";
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
             ptmt.setInt(1, patientEPD.getPatientEPDNumber());
@@ -46,9 +46,8 @@ public class PatientEPDDAO implements Serializable {
             ptmt.setInt(10, patientEPD.getEggsToEat());
             ptmt.setInt(11, patientEPD.getEggsEaten());
             ptmt.setInt(12, patientEPD.getEggsContent());
-            ptmt.setString(13, patientEPD.getDiagnosis());
-            ptmt.setInt(14, patientEPD.getReanimate());
-            ptmt.setInt(15, patientEPD.getRoomNumber());
+
+
             ptmt.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Duplicate key" + patientEPD.getPatientNumber());
@@ -97,9 +96,8 @@ public class PatientEPDDAO implements Serializable {
                 patientEPD.setEggsToEat(resultset.getInt(10));
                 patientEPD.setEggsEaten(resultset.getInt(11));
                 patientEPD.setEggsContent(resultset.getInt(12));
-                patientEPD.setDiagnosis(resultset.getString(13));
-                patientEPD.setReanimate(resultset.getInt(14));
-                patientEPD.setRoomNumber(resultset.getInt(15));
+
+
 
             }
         }
@@ -129,7 +127,7 @@ public class PatientEPDDAO implements Serializable {
     public void updatePatientEPD(PatientEPD patientEPD) {
         String query = "update patientEPD set patientNumber=?, employeeNumber=?, nurseNumber=?,temperature=? " +
                 ", bloodPressure=?, breathing=?, pain=?, date=?, eggsToEat=?, eggsContent=?," +
-                "diagnosis=?, reanimate=?, roomNumber=? where patientEPDNumber = ?";
+                " where patientEPDNumber = ?";
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(query);
@@ -145,9 +143,7 @@ public class PatientEPDDAO implements Serializable {
             ptmt.setInt(10, patientEPD.getEggsToEat());
             ptmt.setInt(11, patientEPD.getEggsEaten());
             ptmt.setInt(12, patientEPD.getEggsContent());
-            ptmt.setString(13, patientEPD.getDiagnosis());
-            ptmt.setInt(14, patientEPD.getReanimate());
-            ptmt.setInt(15, patientEPD.getRoomNumber());
+
             ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,9 +207,7 @@ public class PatientEPDDAO implements Serializable {
                 patientEPD.setEggsToEat(resultset.getInt(10));
                 patientEPD.setEggsEaten(resultset.getInt(11));
                 patientEPD.setEggsContent(resultset.getInt(12));
-                patientEPD.setDiagnosis(resultset.getString(13));
-                patientEPD.setReanimate(resultset.getInt(14));
-                patientEPD.setRoomNumber(resultset.getInt(15));
+
                 patientEPDs.add(patientEPD);
             }
 

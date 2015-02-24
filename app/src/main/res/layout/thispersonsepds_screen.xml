@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    tools:context=".EPDsPerPersonActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terug"
+                android:id="@+id/backERDButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toevoegen"
+                android:id="@+id/addERDButton" />
+
+        </TableRow>
+
+    <TableRow> <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Patientnaam "
+        android:id="@+id/PatientName" /></TableRow>
+    </TableLayout>
+    <TableLayout  android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Naam: "
+            android:id="@+id/patienNameInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datum: "
+            android:id="@+id/patientDateInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arts: "
+            android:id="@+id/patientDoctorInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperatuur: "
+            android:id="@+id/patientTempInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diagnose: "
+            android:id="@+id/patientDiagnoseInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reanimeren: "
+            android:id="@+id/patientReanimateInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bloeddruk: "
+            android:id="@+id/patientBloodPressureInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ademhaling: "
+            android:id="@+id/patientBreathingInERD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pijn: "
+            android:id="@+id/patientPainEPD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gegeten: "
+            android:id="@+id/patientEatenEPD" />
+
+
+    </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent" >
+                <TableLayout
+                    android:id="@+id/my_table"
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"
+                    android:stretchColumns="1"
+                    android:shrinkColumns="1"/>
+            </ScrollView>
+
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

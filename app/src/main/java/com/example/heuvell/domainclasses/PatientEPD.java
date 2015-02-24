@@ -20,14 +20,14 @@ public class PatientEPD {
     private int eggsToEat;
     private int eggsEaten;
     private int eggsContent;
-    private int roomNumber;
+
 
     public PatientEPD() {
     }
 
     public PatientEPD(int patientEPDNumber, int patientNumber, int nurseNumber, int employeeNumber,
                       Date date, int temperature, String diagnose, int reanimate, String bloodPressure, int breathing,
-                      int pain, int eggsToEat, int eggsEaten, int eggsContent, int roomNumber){
+                      int pain, int eggsToEat, int eggsEaten, int eggsContent){
         this.patientEPDNumber = patientEPDNumber;
         this.patientNumber = patientNumber;
         this.nurseNumber = nurseNumber;
@@ -42,17 +42,11 @@ public class PatientEPD {
         this.eggsToEat = eggsToEat;
         this.eggsEaten = eggsEaten;
         this.eggsContent = eggsContent;
-        this.roomNumber = roomNumber;
+
 
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
-    }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 
     public int getPatientEPDNumber() {
         return patientEPDNumber;
@@ -103,22 +97,6 @@ public class PatientEPD {
 
     public void setTemperature(int temperature) {
         this.temperature = temperature;
-    }
-
-    public String getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(String diagnose) {
-        this.diagnosis = diagnose;
-    }
-
-    public int getReanimate() {
-        return reanimate;
-    }
-
-    public void setReanimate(int reanimate) {
-        this.reanimate = reanimate;
     }
 
     public String getBloodPressure() {

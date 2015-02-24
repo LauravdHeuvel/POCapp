@@ -41,7 +41,8 @@
             android:text="Login"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal|bottom"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:onClick="onClick"/>
 
         <ImageView
             android:layout_width="wrap_content"
